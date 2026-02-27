@@ -26,7 +26,7 @@
 
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--navy); }
 
-        /* Navigation Bar */
+        /* Navigation */
         nav {
             background: rgba(255, 255, 255, 0.9);
             padding: 1rem 5%;
@@ -43,11 +43,12 @@
             color: var(--navy);
             font-weight: 700;
             margin: 0 15px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* HERO SECTION */
+        /* Hero Section */
         .hero { 
             background-color: var(--navy);
             background-image: 
@@ -55,29 +56,69 @@
                 linear-gradient(90deg, rgba(52, 152, 219, 0.1) 1px, transparent 1px);
             background-size: 40px 40px;
             color: var(--white); 
-            text-align: center; 
             padding: 8rem 20px;
             position: relative;
+            overflow: hidden;
         }
         
+        .hero-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
         .hero-content h1 { 
             color: var(--white); 
             font-size: 3.5rem; 
-            margin: 0 0 2rem 0;
+            margin: 0 0 3rem 0;
             text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInSlide 1s forwards;
+        }
+
+        .about-flex-wrapper {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 25px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .profile-frame {
+            flex: 0 0 280px;
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: fadeInSlide 1s forwards 0.4s;
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .about-card {
             background: rgba(255, 255, 255, 0.95);
             color: var(--text);
             border-radius: 24px;
-            padding: 3rem;
-            max-width: 850px;
-            margin: auto;
+            padding: 2.5rem;
+            flex: 1;
+            text-align: left;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255,255,255,0.3);
-            position: relative;
-            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: fadeInSlide 1s forwards 0.6s;
         }
 
         .about-header-tag {
@@ -90,7 +131,11 @@
             margin-bottom: 1rem;
         }
 
-        /* Container Sections */
+        @keyframes fadeInSlide {
+            to { opacity: 1; transform: translate(0); }
+        }
+
+        /* Sections */
         .container { max-width: 1100px; margin: auto; padding: 4rem 20px; }
         .section-title { 
             border-left: 6px solid var(--light-blue); 
@@ -99,6 +144,8 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .job-card {
@@ -107,9 +154,11 @@
             border-radius: 15px;
             margin-bottom: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
+        .job-card:hover { transform: translateY(-5px); }
 
-        /* Achievements Grid */
+        /* Achievements */
         .achieve-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -135,16 +184,7 @@
             align-items: center;
         }
 
-        .impact-item { 
-            background: var(--navy); 
-            color: white;
-            padding: 2.5rem; 
-            border-radius: 20px; 
-            margin-bottom: 2rem; 
-        }
-        .impact-item h4 { color: var(--light-blue); }
-
-        /* TESTIMONIALS SECTION (POP-UP STYLE) */
+        /* Testimonials */
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -155,24 +195,11 @@
             background: var(--white);
             padding: 40px 30px;
             border-radius: 20px;
-            /* Đổ bóng sâu để tạo hiệu ứng Pop-up */
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
             border: 1px solid #f0f0f0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             transition: transform 0.3s ease;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-        }
-        .testimonial-content {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         .testimonial-text {
             font-style: italic;
@@ -180,57 +207,72 @@
             text-align: center;
             line-height: 1.8;
             font-size: 1.05rem;
-            margin: 0;
-            position: relative;
-        }
-        /* Icon dấu ngoặc kép trang trí nhẹ */
-        .testimonial-text::before {
-            content: '"';
-            font-family: 'Montserrat';
-            font-size: 4rem;
-            color: var(--soft-blue);
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: -1;
+            margin-bottom: 20px;
         }
         .testimonial-author {
-            margin-top: 25px;
+            margin-top: auto;
             font-weight: bold;
             color: var(--navy);
             font-family: 'Montserrat';
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-top: 2px solid var(--soft-blue);
+            font-size: 0.85rem;
+            text-align: center;
+            border-top: 1px solid #eee;
             padding-top: 15px;
-            width: 100%;
-            text-align: center;
         }
 
-        /* CONTACT SECTION */
-        .contact-box {
-            background: linear-gradient(135deg, var(--navy), #2c3e50);
-            color: white;
-            padding: 4rem 2rem;
-            border-radius: 30px;
-            text-align: center;
-            margin-top: 4rem;
+        /* Community Timeline */
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
         }
-        .contact-box a { color: var(--light-blue); text-decoration: none; font-weight: bold; }
+        .timeline-item.show { opacity: 1; transform: translateY(0); }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #334155;
+            top: 0; bottom: 0; left: 50%; margin-left: -2px;
+        }
+        .left { left: 0; }
+        .right { left: 50%; }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px; height: 20px;
+            right: -10px; background-color: #38bdf8;
+            border: 4px solid #0f172a; top: 15px;
+            border-radius: 50%; z-index: 1;
+        }
+        .right::after { left: -10px; }
+        .timeline-content {
+            padding: 25px;
+            background: #1e293b;
+            color: #f8fafc;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .about-card { padding: 1.5rem; }
-            .testimonial-grid { grid-template-columns: 1fr; }
+        @media (max-width: 850px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .about-flex-wrapper { flex-direction: column; align-items: center; }
+            .profile-frame { flex: 0 0 auto; width: 250px; height: 300px; }
+            .about-card { text-align: center; padding: 1.5rem; }
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item::after { left: 21px; }
+            .right { left: 0%; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="#about">About Me</a>
+    <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#achievements">Achievements</a>
     <a href="#community">Community</a>
@@ -240,19 +282,26 @@
 
 <header class="hero" id="about">
     <div class="hero-content">
-        <h1>NHU TRUONG Q.</h1>
-        <div class="about-card">
-            <span class="about-header-tag">About Me</span>
-            <p style="font-size: 1.15rem; margin: 0;">
-                With a dual background in language pedagogy and higher education management, I am transitioning from practitioner to researcher. I aim to bridge my instructional experience with academic coordination to explore innovative strategies and EdTech, ultimately contributing to the sustainable advancement of Vietnam’s educational landscape through a Master’s in Education.
-            </p>
+        <h1>TRUONG QUYNH NHU</h1>
+        
+        <div class="about-flex-wrapper">
+            <div class="profile-frame">
+                <img src="images/profile.jpg" alt="Truong Quynh Nhu" onerror="this.src='https://via.placeholder.com/300x400?text=Avatar'">
+            </div>
+
+            <div class="about-card">
+                <span class="about-header-tag">Professional Profile</span>
+                <p style="font-size: 1.1rem; margin: 0; line-height: 1.8;">
+                    Whether delivering personalized instruction or coordinating international teacher exchange programs, my journey has always centered on human development. By bridging classroom experience with coordination expertise, I strive to cultivate multicultural and equitable learning environments. I firmly believe that education is the catalyst for unlocking human potential and fostering community connectivity.
+                </p>
+            </div>
         </div>
     </div>
 </header>
 
 <div class="container">
     <section id="experience">
-        <h2 class="section-title">Working Experience ✍🏻</h2>
+        <h2 class="section-title">Professional Experience ✍🏻</h2>
         
         <h3 style="color: var(--light-blue); margin-bottom: 1.5rem;">Leadership and Management in Higher education</h3>
         <div class="job-card">
@@ -310,99 +359,101 @@
             <div class="achieve-card">
                 <h4>Certificates & Degrees</h4>
                 <div class="cert-highlight"><span>IELTS Academic</span> <span>7.5</span></div>
-                <div class="cert-highlight"><span>TESOL Certificate</span> <span>120 Hours</span></div>
-                <div class="cert-highlight"><span>BA English Linguistics</span> <span>IU,VNU-HCM</span></div>
+                <div class="cert-highlight"><span>TESOL Certificate</span> <span>120h</span></div>
+                <div class="cert-highlight"><span>BA English Linguistics</span> <span>IU,VNU-HCMC</span></div>
             </div>
         </div>
     </section>
 
-    <section id="community">
-        <h2 class="section-title">Community Impact 🍀</h2>
-        <div class="impact-item">
-            <h4>Workshop IPA 101: Master Pronunciation</h4>
-            <p>Mastering the IPA and pronunciation techniques to boost learner confidence.</p>
-            <p><strong>📈 Growth:</strong> 10 registrations (Dec 2025) → 40 registrations (Feb 2026)</p>
-        </div>
-        <div class="impact-item" style="background: var(--white); border: 2px solid var(--navy);">
-            <h4 style="color: var(--navy);">Freshmen Foundation Program (2026)</h4>
-            <p style="color: var(--text);">A pilot study exploring EdTech's role in bridging proficiency gaps for first-year Vietnamese university students.</p>
-            <p style="color: var(--navy); font-weight: bold;">Starting July 2026</p>
-        </div>
-    </section>
+<section id="community" style="background-color: #0f172a; padding: 6rem 20px; color: #f8fafc; overflow: hidden;">
+    <div class="container">
+        <h2 class="section-title" style="color: #38bdf8; border-left-color: #38bdf8;">Community Impact 🍀</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span style="color: #38bdf8; font-weight: bold;">Dec 2025</span>
+                    <h4 style="color: white; margin: 10px 0;">Workshop IPA 101: Series 01</h4>
+                    <p style="font-size: 0.9rem; color: #cbd5e1;">Empowering learners to master the International Phonetic Alphabet (IPA) and improve pronunciation (10+ participants).</p>
+                </div>
+            </div>
 
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span style="color: #38bdf8; font-weight: bold;">Feb 2026</span>
+                    <h4 style="color: white; margin: 10px 0;">Workshop IPA 101: Series 02</h4>
+                    <p style="font-size: 0.9rem; color: #cbd5e1;">Advancing phonetic competence and sharing high-quality learning resources (40+ participants).</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span style="color: #38bdf8; font-weight: bold;">July 2026 (Planned)</span>
+                    <h4 style="color: white; margin: 10px 0;">English Foundation for Freshmen</h4>
+                    <p style="font-size: 0.9rem; color: #cbd5e1;">A pro-bono teaching program offering 06 full scholarships to support first-year students in gaining communication confidence.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
     <section id="testimonials">
-        <h2 class="section-title">Learners' Testimonials 💬</h2>
+        <h2 class="section-title">Student Voices 💬</h2>
         <div class="testimonial-grid">
-
             <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <p class="testimonial-text">"Viet: Anh cảm ơn cô, nhờ cô mà anh mới dám mở miệng để nói như hôm nay. Chứ hai tháng trước thật sự anh không có cái can đảm này. Eng: Thanks to you, I dare to open my mouth to "speak English". Two months ago, I didn't have this courage to be honest."</p>
-                </div>
-                <div class="testimonial-author">Mr. Nguyen (1:1)</div>
+                <p class="testimonial-text">"I want to thank you; it's because of you that I dare to speak English today. Two months ago, I truly didn't have this courage."</p>
+                <div class="testimonial-author">Mr. Nguyen (1:1 Class)</div>
             </div>
-
-             <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <p class="testimonial-text">"Viet: Em cảm thấy mình đọc trơn tru hơn hẳn. Đi học gặp mấy chữ tiếng Anh em tự tin đọc nó hơn, dù nhiều cái hong đúng. - Eng: I feel like I read much more fluently now. When I encounter English words in class, I feel more confident reading them, even if some of them aren't correct. "</p>
-                </div>
-                <div class="testimonial-author">Ms. Ngoc (GTO-01)</div>
-            </div>
-
             <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <p class="testimonial-text">"I've been thinking about quitting your class because I feel like I can't keep up. I struggle with motivation, and I don't see much improvement in my English. It makes me feel really bad.
-But then I realized something important: after every lesson with you, I feel so joyful. I smile the whole time until the class ends.
-So, I just want to say thank you for that. Truly, thank you 🙏"</p>
-                </div>
-                <div class="testimonial-author">Ms. Ha (GTO-03)</div>
+                <p class="testimonial-text">"I feel I'm reading much more fluently now. When I see English words, I'm more confident to pronounce them, even if I'm not always right yet."</p>
+                <div class="testimonial-author">Ngoc (GTO-01 Class)</div>
             </div>
-
             <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <p class="testimonial-text">"Viet: Tui có điều muốn nóiii. 1 tiếng 30p học bà thực sự made my day lun á. Cô giáo dạy học English là một phần, có thêm góc nhìn về văn hoá là một phần, quan trọng là tui còn thấy học bà tui có thêm động lực chinh phục English nhìu nhìu luôn á chứ không buồn ngủ như xưa. Tui iu cái năng lượng của lớp học mà Như mang lại, iu mà muốn học mãi luônnn (nếu không có deadline trong classroom dí) 😝 Trời lui ghét cái noti trong zalo lắm nên tôi ít nhắn riêng bà, chứ tui vẫn update btap đầy đủ lắm, shadowing trẹo mỏ btap lớn và hoàn thành goal April mỗi ngày nè 😝. Eng: I have something to sayyy. 1 hour and 30 minutes studying with you really made my day. Having an English teacher is one thing, gaining more cultural perspectives is another, but importantly, I feel much more motivated to conquer English when studying with you, instead of feeling sleepy like before. I love the energy you bring to the class, love it so much I want to keep studying forever (if only there weren't deadlines chasing me in the classroom) 😝 Goodness, I really hate Zalo notifications so I rarely message you privately, but I still update my homework fully, doing "jaw-breaking" shadowing for big assignments and finishing my April goals every day 😝"</p>
-                </div>
-                <div class="testimonial-author">Ms. Yen (GTO-05)</div>
+                <p class="testimonial-text">"I've been thinking about quitting... but after every lesson with you, I feel so joyful. I smile the whole time until the class ends."</p>
+                <div class="testimonial-author">Ha (GTO-03 Class)</div>
             </div>
-
             <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <p class="testimonial-text">"Viet: Cám ơn Như vì 5 tháng đồng hành vừa qua. Thời gian duy trì học tiếng anh dài nhất từ trước đến giờ của chị. Có những ngày quá là mệt vì công việc đi nhưng mà vì động lực nào đó vẫn vào Zoom của lớp học, thần kì quá ha :D Học hành gì mà không áp lực căng thẳng miếng nào hết, vì Như có cách dẫn dắt mọi người rất dễ hiểu để những thành viên chưa ổn lắm vẫn cảm thấy thoải mái, không tự ti. Cái này là tài năng á hông phải thần kì nữa. Eng: Thank you, Nhu, for the past 5 months of companionship. This is the longest time I've ever maintained studying English. There were days when I was exhausted from work, but for some reason, I still joined the class Zoom—it's quite magical :D The learning is not stressful or tense at all because Nhu has a way of guiding everyone that is very easy to understand, so even members who aren't doing very well still feel comfortable and not self-conscious. This is a talent, not just magic anymore."</p>
-                </div>
-                <div class="testimonial-author">Ms. Phung (GTO-02)</div>
+                <p class="testimonial-text">"Your 90-minute class truly made my day. Thank you so much!"</p>
+                <div class="testimonial-author">Yen (GTO-05 Class)</div>
             </div>
-
             <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <p class="testimonial-text">"Dear Ms. Nhu,
-
-After completing this English communication course, I want to share some feedback with you.
-
-First of all, throughout the lessons, you were always patient, enthusiastic, and supportive, which made learning English much easier and more enjoyable for me.
-
-Secondly, your teaching has helped me feel more confident when speaking English. I really appreciate your encouragement and the way you always motivate me to keep practicing.
-
-Thank you for being such a wonderful teacher. Hope you have a great day and achieve everything you wish for."</p>
-                </div>
-                <div class="testimonial-author">Ms. Phuong (1:1)</div>
+                <p class="testimonial-text">"Thank you for the past 5 months. This is the longest I have ever maintained my English studies."</p>
+                <div class="testimonial-author">Ms. Phung (GTO-02 Class)</div>
             </div>
-
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Dear Ms. Nhu, After completing this course... Thank you for being such a wonderful teacher."</p>
+                <div class="testimonial-author">Phuong (1:1 Class)</div>
+            </div>
         </div>
     </section>
 
     <section id="contact">
-        <div class="contact-box">
-            <h2 style="color: white; border: none; margin-bottom: 2rem; justify-content: center;" class="section-title">Contact 📲</h2>
-            <p>Email: <a href="mailto:quynhnhutrg@gmail.com">quynhnhutrg@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/qnhutrg" target="_blank">linkedin.com/in/qnhutrg</a></p>
-            <p>Threads/TikTok: <strong>@alonhuspeaking</strong></p>
+        <div class="contact-box" style="background: linear-gradient(135deg, var(--navy), #2c3e50); color: white; padding: 4rem 2rem; border-radius: 30px; text-align: center; margin-top: 4rem;">
+            <h2 style="color: white; border: none; margin-bottom: 2rem; display: flex; justify-content: center;" class="section-title">Get In Touch 📲</h2>
+            <p>Email: <a href="mailto:quynhnhutrg@gmail.com" style="color: var(--light-blue); font-weight: bold; text-decoration: none;">quynhnhutrg@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/qnhutrg" target="_blank" style="color: var(--light-blue); font-weight: bold; text-decoration: none;">linkedin.com/in/qnhutrg</a></p>
+            <p>Facebook: <a href="https://facebook.com/qnhutrg/" target="_blank" style="color: var(--light-blue); font-weight: bold; text-decoration: none;">facebook.com/qnhutrg/</a></p>
+            <p>Professional Socials: <strong>@alonhuspeaking</strong></p>
         </div>
     </section>
 </div>
 
 <footer style="text-align: center; padding: 2rem; color: #777; font-size: 0.8rem;">
-    &copy; 2026 Nhu Truong Q. | Bridging Pedagogy and Management
+    &copy; 2026 Truong Quynh Nhu | Bridging Pedagogy and Management
 </footer>
 
-</body>
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, { threshold: 0.1 });
 
+    document.querySelectorAll('.timeline-item').forEach((el) => observer.observe(el));
+</script>
+
+</body>
 </html>
